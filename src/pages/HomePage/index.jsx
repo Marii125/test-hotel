@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Room } from '../../components/Rooms';
+import { Room } from '../../components/Room';
 import './style.css';
+import { DetailRoom } from '../../components/DetailRoom';
 
 export const HomePage = () => {
   const [rooms, setRooms] = useState([]);
+  const [selected, setSelected] = useState([]);
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -37,9 +39,11 @@ export const HomePage = () => {
               return (
                 <Room
                   key={room.id}
-                  name={room.name}
+                  room={room}
+                  /*  name={room.name}
                   price={room.cena}
-                  src={room.image}
+                  src={room.image} */
+                  onSelect={setSelected}
                 />
               );
             })}
@@ -49,47 +53,21 @@ export const HomePage = () => {
 
       <section class="light">
         <div class="container">
-          <h2>Heading</h2>
-          <div class="columns-2">
-            <div class="column">
-              <img src="img/image1.svg" />
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque
-                accusantium, dolor quisquam doloremque quod nobis temporibus
-                ducimus sapiente consectetur distinctio assumenda, nisi suscipit
-                saepe. Vero.
-              </p>
-            </div>
-            <form>
-              <div class="form-fields">
-                <label htmlFor="field1" class="field-label">
-                  Field 1:
-                </label>
-                <input id="field1" class="field-input" type="text" />
+          <DetailRoom room={selected} />
+        </div>
+      </section>
 
-                <label htmlFor="field2" class="field-label">
-                  Field 2:
-                </label>
-                <input id="field2" class="field-input" type="text" />
-
-                <label htmlFor="select" class="field-label">
-                  Select:
-                </label>
-                <select id="select" class="field-input">
-                  <option>Option 1</option>
-                  <option>Option 2</option>
-                  <option>Option 3</option>
-                  <option>Option 4</option>
-                </select>
-
-                <label htmlFor="check1" class="field-label">
-                  Checkbox 1:
-                </label>
-                <input id="check1" class="field-input" type="checkbox" />
-              </div>
-              <button class="wide">Submit</button>
-            </form>
+      <section class="dark">
+        <div class="container columns-2">
+          <div class="columns">
+            <h2>Kontakt</h2>
+            <p>
+              Hotel stříbravaKe
+              <br /> Kamenné lávce 12<br></br> 317 24 nad Stříbravou
+            </p>
+            <a href="#">recepce@hotelstribrava.cz</a>
           </div>
+          <img src="/pages/HomePage/img/mapa.png" />
         </div>
       </section>
     </>
